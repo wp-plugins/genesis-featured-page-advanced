@@ -1,6 +1,6 @@
-=== Genesis Advanced Featured Page ===
+=== Genesis Featured Page Advanced===
 Contributors: ndiego
-Tags: genesis, widget
+Tags: genesis, widget, featured page, featured
 Requires at least: 3.6
 Tested up to: 3.8
 License: GPLv2 or later
@@ -42,7 +42,7 @@ However, sometimes you need additional functionality that is not offered in the 
 
 == Screenshots ==
 
-1. Admin and frontend view of the Genesis - Featured Page Advanced widget. Highlights normal usage and advanced usage. Click for [Larger Image](https://raw2.github.com/ndiego/genesis-featured-page-advanced/master/screenshot-1.png). 
+1. Admin and frontend view of the Genesis - Featured Page Advanced widget. Highlights normal usage and advanced usage. Click for [Larger Image](https://raw2.github.com/ndiego/genesis-featured-page-advanced/master/screenshot-1.jpg). 
 
 == Changelog ==
 
