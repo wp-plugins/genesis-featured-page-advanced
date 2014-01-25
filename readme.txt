@@ -51,5 +51,11 @@ However, sometimes you need additional functionality that is not offered in the 
 
 == Changelog ==
 
+= 1.2.0 =
+* Added option to show page excerpt
+* Added option to remove link from Page Title
+* Added option to add link to Widget Title
+* Cleaned up code
+
 = 1.0.0 =
 * Initial Release
