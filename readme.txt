@@ -1,13 +1,13 @@
 === Genesis Featured Page Advanced===
-Contributors: ndiego
+Contributors: ndiego, outermostdesign
 Tags: genesis, widget, featured page, featured
 Requires at least: 3.6
 Tested up to: 3.8
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-An advanced version of the Genesis - Featured Page widget. Allows you to add a custom image and custom content. The Genesis Framework is required. 
+An advanced version of the Genesis - Featured Page widget. Allows you to add a custom image, custom content, page excerpt, and more.
 
 == Description ==
 
@@ -18,7 +18,11 @@ That said, most Genesis users have probably stumbled upon the *Genesis - Feature
 However, sometimes you need additional functionality that is not offered in the core widget, such as adding a custom image or custom content. This is what *Genesis - Featured Page Advanced* does.  
 
 = Plugin Highlights =
-* Adds intuitive custom image and custom content fields
+* Adds intuitive custom image upload field 
+* Adds custom content field
+* Adds option to display the page excerpt **New**
+* Adds the option to remove the page link from the Page Title **New**
+* Adds the option to add the page link to the Widget Title **New**
 * Add custom image using media uploader that actually works with widgets (no typing of urls)
 * Fields show/hide based on user selection for cleaner UI 
 * Works alongside the original *Genesis - Featured Page* widget and other third party widgets
