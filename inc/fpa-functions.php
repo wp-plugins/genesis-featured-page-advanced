@@ -104,7 +104,7 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 				if ( $instance['enable_image_link'] == 1 ) {
 					printf( '<a href="%s" title="%s" class="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), esc_attr( $instance['image_alignment'] ), $image );
 				} else {
-					echo '<img src="' . $image .'"/>';
+					echo $image;
 				}
 			}
 			
