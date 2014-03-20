@@ -269,9 +269,10 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 		<div class="fpa-image-size <?php if ( $instance['show_image'] != 2 ) echo ('hidden');  ?>" id="<?php echo $this->get_field_id('toggle_image_size'); ?>" >
 			<label for="<?php echo $this->get_field_id( 'image_size' ); ?>"><?php echo ('Image Size'); ?>:</label>
 			<select id="<?php echo $this->get_field_id( 'image_size' ); ?>" class="genesis-image-size-selector" name="<?php echo $this->get_field_name( 'image_size' ); ?>">
-				<option value="thumbnail">thumbnail (<?php echo absint( get_option( 'thumbnail_size_w' ) ); ?>x<?php echo absint( get_option( 'thumbnail_size_h' ) ); ?>)</option>
-				<option value="medium">medium (<?php echo absint( get_option( 'medium_size_w' ) ); ?>x<?php echo absint( get_option( 'medium_size_h' ) ); ?>)</option>
-				<option value="large">large (<?php echo absint( get_option( 'large_size_w' ) ); ?>x<?php echo absint( get_option( 'large_size_h' ) ); ?>)</option>
+				<option value="thumbnail" <?php selected( 'thumbnail', $instance[ 'image_size' ] ); ?>>Thumbnail (<?php echo absint( get_option( 'thumbnail_size_w' ) ); ?>&#x000D7;<?php echo absint( get_option( 'thumbnail_size_h' ) ); ?>)</option>
+				<option value="medium" <?php selected( 'medium', $instance[ 'image_size' ] ); ?>>Medium (<?php echo absint( get_option( 'medium_size_w' ) ); ?>&#x000D7;<?php echo absint( get_option( 'medium_size_h' ) ); ?>)</option>
+				<option value="large" <?php selected( 'large', $instance[ 'image_size' ] ); ?>>Large (<?php echo absint( get_option( 'large_size_w' ) ); ?>&#x000D7;<?php echo absint( get_option( 'large_size_h' ) ); ?>)</option>
+				<option value="full" <?php selected( 'full', $instance[ 'image_size' ] ); ?>>Full (Original Image Size)</option>
 				<?php
 				$sizes = genesis_get_additional_image_sizes();
 				foreach ( (array) $sizes as $name => $size )

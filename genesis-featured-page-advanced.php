@@ -4,7 +4,7 @@
 Plugin Name: Genesis Featured Page Advanced
 Plugin URI: http://www.outermostdesign.com/
 Description: Adds an enhanced version of the Genesis - Featured Page widget. The Genesis Framework 2.0+ is required.
-Version: 1.3.2
+Version: 1.3.3
 Author: Outermost Design
 Author URI: http://www.outermostdesign.com/
 License: GPLv2
