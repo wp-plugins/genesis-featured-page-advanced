@@ -1,4 +1,7 @@
 <?php
+
+defined( 'WPINC' ) or die;
+
 /**
  * Advanced Featured Page Widget class
  * 
@@ -42,7 +45,7 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 
 		$widget_ops = array(
 			'classname'   => 'featured-content featuredpage',
-			'description' => 'Displays featured page with thumbnails',
+			'description' => __( 'Displays featured page with images and content.' , 'genesis-featured-page-advanced' ),
 		);
 
 		$control_ops = array(
@@ -51,7 +54,7 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 			'height'  => 250,
 		);
 
-		parent::__construct( 'featured-page-advanced', 'Genesis - Featured Page Advanced', $widget_ops, $control_ops );
+		parent::__construct( 'featured-page-advanced', __( 'Genesis - Featured Page Advanced', 'genesis-featured-page-advanced' ), $widget_ops, $control_ops );
 
 	}
 
@@ -233,17 +236,17 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 		
 		<!--Widget Title Block-->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php echo ('Title'); ?>:</label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'genesis-featured-page-advanced' ); ?>:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" class="widefat" />
 		</p>
 		<p>
 			<input id="<?php echo $this->get_field_id( 'enable_title_link' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'enable_title_link' ); ?>" value="1" <?php checked( $instance['enable_title_link'] ); ?> />
-			<label for="<?php echo $this->get_field_id( 'enable_title_link' ); ?>"><?php echo ('Enable Title Link'); ?></label>	
+			<label for="<?php echo $this->get_field_id( 'enable_title_link' ); ?>"><?php _e( 'Enable Title Link', 'genesis-featured-page-advanced' ); ?></label>	
 		</p>
 		
 		<!--Featured Page Selection-->
 		<p>
-			<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php echo ('Page'); ?>:</label>
+			<label for="<?php echo $this->get_field_id( 'page_id' ); ?>"><?php _e( 'Page', 'genesis-featured-page-advanced' ); ?>:</label>
 			<?php wp_dropdown_pages( array( 'name' => $this->get_field_name( 'page_id' ), 'selected' => $instance['page_id'] ) ); ?>
 		</p>
 
@@ -253,26 +256,26 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 		<div class="fpa-show-image">
 			<label for="<?php echo $this->get_field_id( 'show_no_image' ); ?>">
 				<input type="radio" id="<?php echo $this->get_field_id( 'show_no_image' ); ?>" name="<?php echo $this->get_field_name( 'show_image' ); ?>" value="1" <?php checked( 1, $instance['show_image'] ); ?> />
-				<span>No Image</span>
+				<span><?php _e( 'No Image', 'genesis-featured-page-advanced' ); ?></span>
 			</label><br />
 			<label for="<?php echo $this->get_field_id( 'show_featured_image' ); ?>">
 				<input type="radio" id="<?php echo $this->get_field_id( 'show_featured_image' ); ?>" name="<?php echo $this->get_field_name( 'show_image' ); ?>" value="2"  <?php checked( 2, $instance['show_image'] ); ?> />
-				<span>Show Featured Image</span>
+				<span><?php _e( 'Show Featured Image', 'genesis-featured-page-advanced' ); ?></span>
 			</label><br />
 			<label for="<?php echo $this->get_field_id( 'show_custom_image' ); ?>">
 				<input type="radio" id="<?php echo $this->get_field_id( 'show_custom_image' ); ?>" name="<?php echo $this->get_field_name( 'show_image' ); ?>" value="3" <?php checked( 3, $instance['show_image'] ); ?> />
-				<span>Show Custom Image</span>
+				<span><?php _e( 'Show Custom Image', 'genesis-featured-page-advanced' ); ?></span>
 			</label>
 		</div>
 		
 		<!--Show Featured Image-->
 		<div class="fpa-image-size <?php if ( $instance['show_image'] != 2 ) echo ('hidden');  ?>" id="<?php echo $this->get_field_id('toggle_image_size'); ?>" >
-			<label for="<?php echo $this->get_field_id( 'image_size' ); ?>"><?php echo ('Image Size'); ?>:</label>
+			<label for="<?php echo $this->get_field_id( 'image_size' ); ?>"><?php _e( 'Image Size', 'genesis-featured-page-advanced' ); ?>:</label>
 			<select id="<?php echo $this->get_field_id( 'image_size' ); ?>" class="genesis-image-size-selector" name="<?php echo $this->get_field_name( 'image_size' ); ?>">
 				<option value="thumbnail" <?php selected( 'thumbnail', $instance[ 'image_size' ] ); ?>>Thumbnail (<?php echo absint( get_option( 'thumbnail_size_w' ) ); ?>&#x000D7;<?php echo absint( get_option( 'thumbnail_size_h' ) ); ?>)</option>
 				<option value="medium" <?php selected( 'medium', $instance[ 'image_size' ] ); ?>>Medium (<?php echo absint( get_option( 'medium_size_w' ) ); ?>&#x000D7;<?php echo absint( get_option( 'medium_size_h' ) ); ?>)</option>
 				<option value="large" <?php selected( 'large', $instance[ 'image_size' ] ); ?>>Large (<?php echo absint( get_option( 'large_size_w' ) ); ?>&#x000D7;<?php echo absint( get_option( 'large_size_h' ) ); ?>)</option>
-				<option value="full" <?php selected( 'full', $instance[ 'image_size' ] ); ?>>Full (Original Image Size)</option>
+				<option value="full" <?php selected( 'full', $instance[ 'image_size' ] ); ?>>Full (<?php _e( 'Original Image Size', 'genesis-featured-page-advanced' ); ?>)</option>
 				<?php
 				$sizes = genesis_get_additional_image_sizes();
 				foreach ( (array) $sizes as $name => $size )
@@ -299,17 +302,17 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 
 		<!--Image Alignment-->
 		<p class="<?php if ( $instance['show_image'] == 1 ) echo ('hidden'); ?>" id="<?php echo $this->get_field_id('toggle_image_alignment'); ?>" >
-			<label for="<?php echo $this->get_field_id( 'image_alignment' ); ?>"><?php echo ('Image Alignment'); ?>:</label>
+			<label for="<?php echo $this->get_field_id( 'image_alignment' ); ?>"><?php _e( 'Image Alignment', 'genesis-featured-page-advanced' ); ?>:</label>
 			<select id="<?php echo $this->get_field_id( 'image_alignment' ); ?>" name="<?php echo $this->get_field_name( 'image_alignment' ); ?>">
-				<option value="alignnone">- <?php echo ('None'); ?> -</option>
-				<option value="alignleft" <?php selected( 'alignleft', $instance['image_alignment'] ); ?>><?php echo ('Left'); ?></option>
-				<option value="alignright" <?php selected( 'alignright', $instance['image_alignment'] ); ?>><?php echo ('Right'); ?></option>
+				<option value="alignnone">- <?php _e( 'None', 'genesis-featured-page-advanced' ); ?> -</option>
+				<option value="alignleft" <?php selected( 'alignleft', $instance['image_alignment'] ); ?>><?php _e( 'Left', 'genesis-featured-page-advanced' ); ?></option>
+				<option value="alignright" <?php selected( 'alignright', $instance['image_alignment'] ); ?>><?php _e( 'Right', 'genesis-featured-page-advanced' ); ?></option>
 			</select>
 		</p>
 		
 		<p class="<?php if ( $instance['show_image'] == 1 ) echo ('hidden'); ?>" id="<?php echo $this->get_field_id('toggle_image_link'); ?>">
 			<input id="<?php echo $this->get_field_id( 'enable_image_link' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'enable_image_link' ); ?>" value="1" <?php checked( 1, $instance['enable_image_link'] ); ?> />
-			<label for="<?php echo $this->get_field_id( 'enable_image_link' ); ?>"><?php echo ('Enable Image Link'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'enable_image_link' ); ?>"><?php _e( 'Enable Image Link', 'genesis-featured-page-advanced' ); ?></label>
 		</p>
 		
 		<hr class="div" />
@@ -317,11 +320,11 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 		<!--Page Title Block-->
 		<p class="fpa-toggle-page-link">
 			<input id="<?php echo $this->get_field_id( 'show_title' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_title' ); ?>" value="1" <?php checked( $instance['show_title'] ); ?> />
-			<label for="<?php echo $this->get_field_id( 'show_title' ); ?>"><?php echo ('Show Page Title'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'show_title' ); ?>"><?php _e( 'Show Page Title', 'genesis-featured-page-advanced' ); ?></label>
 		</p>
 		<p class="<?php if ( $instance['show_title'] != 1 ) echo ('hidden'); ?>" id="<?php echo $this->get_field_id('toggle_page_link'); ?>">
 			<input id="<?php echo $this->get_field_id( 'enable_page_title_link' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'enable_page_title_link' ); ?>" value="1" <?php checked( 1, $instance['enable_page_title_link'] ); ?> />
-			<label for="<?php echo $this->get_field_id( 'enable_page_title_link' ); ?>"><?php echo ('Enable Page Title Link'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'enable_page_title_link' ); ?>"><?php _e( 'Enable Page Title Link', 'genesis-featured-page-advanced' ); ?></label>
 		</p>
 		
 		<hr class="div" />
@@ -329,26 +332,26 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 		<!--Page Content Block-->
 		<p class="fpa-toggle-content-limit">
 			<input id="<?php echo $this->get_field_id( 'show_content' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_content' ); ?>" value="1" <?php checked( $instance['show_content'] ); ?> />
-			<label for="<?php echo $this->get_field_id( 'show_content' ); ?>"><?php echo ('Show Page Content'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'show_content' ); ?>"><?php _e( 'Show Page Content', 'genesis-featured-page-advanced' ); ?></label>
 		</p>
 		<p class="<?php if ( $instance['show_content'] != 1 ) echo ('hidden'); ?>" id="<?php echo $this->get_field_id('toggle_content_limit'); ?>">
-			<label for="<?php echo $this->get_field_id( 'content_limit' ); ?>"><?php echo ('Content Character Limit'); ?>:</label>
+			<label for="<?php echo $this->get_field_id( 'content_limit' ); ?>"><?php _e( 'Content Character Limit', 'genesis-featured-page-advanced' ); ?>:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'content_limit' ); ?>" name="<?php echo $this->get_field_name( 'content_limit' ); ?>" value="<?php echo esc_attr( $instance['content_limit'] ); ?>" size="3" />
 		</p>
 		
 		<!--Enable Page Excerpt-->
 		<p>
 			<input id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" value="1" <?php checked( $instance['show_excerpt'] ); ?> />
-			<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php echo ('Show Page Excerpt'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"><?php _e( 'Show Page Excerpt', 'genesis-featured-page-advanced' ); ?></label>
 		</p>
 		
 		<!--Custom Content Block-->
 		<p class="fpa-toggle-custom-content">
 			<input id="<?php echo $this->get_field_id( 'show_custom_content' ); ?>" type="checkbox" name="<?php echo $this->get_field_name( 'show_custom_content' ); ?>" value="1" <?php checked( $instance['show_custom_content'] ); ?> />
-			<label for="<?php echo $this->get_field_id( 'show_custom_content' ); ?>"><?php echo ('Show Custom Content'); ?></label>
+			<label for="<?php echo $this->get_field_id( 'show_custom_content' ); ?>"><?php _e( 'Show Custom Content', 'genesis-featured-page-advanced' ); ?></label>
 		</p>
 		<p class="<?php if ( $instance['show_custom_content'] != 1 ) echo ('hidden'); ?>" id="<?php echo $this->get_field_id('toggle_custom_content'); ?>">
-			<label for="<?php echo $this->get_field_id( 'custom_content' ); ?>"><?php echo ('Custom Content'); ?>:</label><br />
+			<label for="<?php echo $this->get_field_id( 'custom_content' ); ?>"><?php _e( 'Custom Content', 'genesis-featured-page-advanced' ); ?>:</label><br />
 			<textarea rows="4" id="<?php echo $this->get_field_id( 'custom_content' ); ?>" name="<?php echo $this->get_field_name( 'custom_content' ); ?>" class="widefat" style="max-width: 100%" ><?php echo esc_attr( $instance['custom_content'] ); ?></textarea>
 		</p>
 
@@ -356,7 +359,7 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 
 		<!--Read More Button/Text-->
 		<p class="fpa-read-more">
-			<label for="<?php echo $this->get_field_id( 'more_text' ); ?>"><?php echo ('More Text'); ?>:</label>
+			<label for="<?php echo $this->get_field_id( 'more_text' ); ?>"><?php _e( 'More Text', 'genesis-featured-page-advanced' ); ?>:</label>
 			<input type="text" id="<?php echo $this->get_field_id( 'more_text' ); ?>" name="<?php echo $this->get_field_name( 'more_text' ); ?>" value="<?php echo esc_attr( $instance['more_text'] ); ?>" />
 		</p>
 		<?php
