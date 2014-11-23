@@ -139,20 +139,28 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 				if ( $instance['enable_image_link'] == 1 ) {
 					printf( '<a href="%s" title="%s" class="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), esc_attr( $instance['image_alignment'] ), $image );
 				} else {
-					//* The <span> replaces the <a> so the image alignment feature still works
-					printf( '<span class="%s">%s</span>', esc_attr( $instance['image_alignment'] ), $image );
+					//* The <span> replaces the <a> so the image alignment feature still works (unfortunately need to use text-align here, which is not optimal)
+					if ( $instance['image_alignment'] == 'aligncenter' ) {
+						printf( '<span class="%s" style="text-align:center">%s</span>', esc_attr( $instance['image_alignment'] ), $image );
+					} else {
+						printf( '<span class="%s">%s</span>', esc_attr( $instance['image_alignment'] ), $image );
+					}
 				}
 			}
 			
 			//* Display custom image
 			if ( $instance['show_image'] == 3 ) {
 				if ( $instance['feature_type'] == 'page' && $instance['enable_image_link'] == 1 ) {
-					printf( '<a href="%s" title="%s" class="%s"><img src="%s"/></a>', get_permalink(), the_title_attribute( 'echo=0' ), esc_attr( $instance['image_alignment'] ), $instance['custom_image'] );
+					printf( '<a href="%s" title="%s" class="%s"><img src="%s" alt="%s" class="entry-image" /></a>', get_permalink(), the_title_attribute( 'echo=0' ), esc_attr( $instance['image_alignment'] ), $instance['custom_image'], get_post_meta( $instance['attachment_id'], '_wp_attachment_image_alt', true) );
 				} elseif ($instance['feature_type'] == 'custom' && $instance['enable_image_link'] == 1 ) {
-					printf( '<a href="%s" title="%s" class="%s"><img src="%s"/></a>', esc_url( $instance['custom_link'] ), esc_attr( $instance['title'] ), esc_attr( $instance['image_alignment'] ), $instance['custom_image'] );
+					printf( '<a href="%s" title="%s" class="%s"><img src="%s" alt="%s" class="entry-image" /></a>', esc_url( $instance['custom_link'] ), esc_attr( $instance['title'] ), esc_attr( $instance['image_alignment'] ), $instance['custom_image'], get_post_meta( $instance['attachment_id'], '_wp_attachment_image_alt', true) );
 				} else {
-					//* The <span> replaces the <a> so the image alignment feature still works
-					printf( '<span class="%s"><img src="%s"/></span>', esc_attr( $instance['image_alignment'] ), $instance['custom_image'] );
+					//* The <span> replaces the <a> so the image alignment feature still works (we manually apply the styling to image)
+					if ( $instance['image_alignment'] == 'aligncenter' ) {
+						printf( '<span class="%s"><img src="%s" style="display:block;margin:0 auto;" alt="%s" class="entry-image" /></span>', esc_attr( $instance['image_alignment'] ), $instance['custom_image'], get_post_meta( $instance['attachment_id'], '_wp_attachment_image_alt', true) );
+					} else {
+						printf( '<span class="%s"><img src="%s" alt="%s" class="entry-image" /></span>', esc_attr( $instance['image_alignment'] ), $instance['custom_image'], get_post_meta( $instance['attachment_id'], '_wp_attachment_image_alt', true) );
+					}
 				}
 			}
 			
@@ -389,6 +397,7 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 				<option value="alignnone">- <?php _e( 'None', 'genesis-featured-page-advanced' ); ?> -</option>
 				<option value="alignleft" <?php selected( 'alignleft', $instance['image_alignment'] ); ?>><?php _e( 'Left', 'genesis-featured-page-advanced' ); ?></option>
 				<option value="alignright" <?php selected( 'alignright', $instance['image_alignment'] ); ?>><?php _e( 'Right', 'genesis-featured-page-advanced' ); ?></option>
+				<option value="aligncenter" <?php selected( 'aligncenter', $instance['image_alignment'] ); ?>><?php _e( 'Center', 'genesis-featured-page-advanced' ); ?></option>
 			</select>
 		</p>
 		
@@ -477,11 +486,9 @@ class Genesis_Featured_Page_Advanced extends WP_Widget {
 			wp_register_style( 'fpa-admin-styles', plugin_dir_url( __FILE__ ) . '../css/fpa-admin-styles.css' );
 			wp_enqueue_style( 'fpa-admin-styles' );
 
-
 		} else {
 			return;
 		}
 	}
 	
-
 }
